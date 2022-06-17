@@ -3,7 +3,7 @@ param(
     # openvpn-build side by side
     [string] $basedir,
     # Version of OpenSSL port to use ("ossl1.1.1" or "ossl3")
-    [string] $ossl = "ossl3",
+    [string] $ossl = "ossl1.1.1",
     [string] $arch = "all",
     [switch] $nosign,
     [switch] $nodevprompt

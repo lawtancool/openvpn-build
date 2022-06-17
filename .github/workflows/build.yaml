@@ -15,7 +15,7 @@ jobs:
     env:
       CMAKE: cmake.exe
       VCPKG_ROOT: ${{ github.workspace }}\vcpkg
-      OSSL: ossl3
+      OSSL: ossl1.1.1
       VCPKG_OVERLAY_PORTS: ${{ github.workspace }}\openvpn-build\windows-msi\vcpkg-ports
       WIX: ${{ github.workspace }}\wix\
 
@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: openvpn/openvpn
-          ref: master
+          ref: release/2.5
           path: openvpn
       
       - name: Copy TunnelBlick patches
@@ -85,10 +85,10 @@ jobs:
         working-directory: openvpn-build/windows-msi
         run: |
           New-Item -Name build-and-package-env.ps1 -ItemType File
-          ./build-and-package.ps1 -basedir ../.. -ossl ossl3 -nosign -arch ${{ matrix.arch }} -nodevprompt
+          ./build-and-package.ps1 -basedir ../.. -ossl ossl1.1.1 -nosign -arch ${{ matrix.arch }} -nodevprompt
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: openvpn-master-${{ matrix.arch }}-${{ env.DATE }}
+          name: openvpn-release25-${{ matrix.arch }}-${{ env.DATE }}
           path: ${{ github.workspace }}\openvpn-build\windows-msi\image\*-${{ matrix.arch }}.msi
