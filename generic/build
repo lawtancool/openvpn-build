@@ -163,7 +163,7 @@ extract() {
 
 # Takes a short product name (eg: 'openssl') and extracts the depcache.
 depcache_extract() {
-	local src="${DEPCACHEDIR}/${1}.tar.gz"
+	local src="${DEPCACHEDIR}/${1}.tar.gz" 
 	[ -f "${src}" ] \
 		|| die "Depcache for '${1}' not found at: '${src}'"
 	tar -xzf "${src}" -C "${OPENVPN_ROOT}" \
@@ -598,3 +598,4 @@ fi
 main
 
 exit 0
+
